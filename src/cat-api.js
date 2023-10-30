@@ -1,10 +1,10 @@
 const select = document.querySelector('.breed-select');
 const loader = document.querySelector('.loader');
 const errorText = document.querySelector('.error');
+
 const BASE_URL = 'https://api.thecatapi.com/v1/';
 const ENDPOINT = 'breeds';
-loader.hidden = false;
-errorText.hidden = true;
+
 export function fetchBreeds() {
   const option = {
     method: 'GET',

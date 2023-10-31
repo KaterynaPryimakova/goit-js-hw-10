@@ -83,11 +83,13 @@ export function fetchCatByBreed(breedId) {
 export function createMarkup(arr, description, name, temperament) {
   return arr
     .map(({ url }) => {
-      return `<img src="${url}" alt="${name}" width="300" />
-    <h2>${name}</h2>
-    <p>${description}</p>
-    <h3>Temperament:</h3>
-    <p>${temperament}</p>`;
+      return `<img src="${url}" alt="${name}" width="350" />
+    <div>
+        <h2>${name}</h2>
+        <p>${description}</p>
+        <h3>Temperament:</h3>
+        <p>${temperament}</p>
+    </div>`;
     })
     .join('');
 }

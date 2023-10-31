@@ -1,0 +1,7 @@
+.cat-info {
+  display: flex;
+  gap: 20px;
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+}

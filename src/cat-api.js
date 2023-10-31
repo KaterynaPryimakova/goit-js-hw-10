@@ -28,6 +28,7 @@ export function fetchBreeds() {
 
 fetchBreeds()
   .then(breeds => {
+    select.hidden = false;
     select.innerHTML = '';
 
     breeds.forEach(breed => {
@@ -47,17 +48,24 @@ fetchBreeds()
 
 export function onChange() {
   breedId = select.value;
-
+  loader.hidden = false;
+  errorText.hidden = true;
+  catContainer.innerHTML = '';
   fetchCatByBreed(breedId)
     .then(resp => {
       const { description, name, temperament } = resp[0].breeds[0];
-      catContainer.innerHTML = '';
       catContainer.insertAdjacentHTML(
         'beforeend',
         createMarkup(resp, description, name, temperament)
       );
+
+      loader.hidden = true;
     })
-    .catch(err => console.log(err));
+    .catch(error => {
+      loader.hidden = true;
+      errorText.hidden = false;
+      console.log(error);
+    });
 }
 export function fetchCatByBreed(breedId) {
   const option = {
@@ -83,10 +91,10 @@ export function fetchCatByBreed(breedId) {
 export function createMarkup(arr, description, name, temperament) {
   return arr
     .map(({ url }) => {
-      return `<img src="${url}" alt="${name}" width="350" />
+      return `<img src="${url}" alt="${name}" width="550" />
     <div>
         <h2>${name}</h2>
-        <p>${description}</p>
+        <p class='descript'>${description}</p>
         <h3>Temperament:</h3>
         <p>${temperament}</p>
     </div>`;

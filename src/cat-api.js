@@ -47,10 +47,15 @@ fetchBreeds()
 
 export function onChange() {
   breedId = select.value;
+
   fetchCatByBreed(breedId)
     .then(resp => {
+      const { description, name, temperament } = resp[0].breeds[0];
       catContainer.innerHTML = '';
-      catContainer.insertAdjacentHTML('beforeend', createMarkup(resp));
+      catContainer.insertAdjacentHTML(
+        'beforeend',
+        createMarkup(resp, description, name, temperament)
+      );
     })
     .catch(err => console.log(err));
 }
@@ -75,13 +80,14 @@ export function fetchCatByBreed(breedId) {
   });
 }
 
-export function createMarkup(arr) {
+export function createMarkup(arr, description, name, temperament) {
   return arr
-    .map(({ url, breeds: { description, name, temperament } }) => {
+    .map(({ url }) => {
       return `<img src="${url}" alt="${name}" width="300" />
     <h2>${name}</h2>
     <p>${description}</p>
-    <p>Temperament: ${temperament}</p>`;
+    <h3>Temperament:</h3>
+    <p>${temperament}</p>`;
     })
     .join('');
 }

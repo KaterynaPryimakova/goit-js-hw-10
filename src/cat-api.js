@@ -1,14 +1,19 @@
+import SlimSelect from 'slim-select';
+
 const select = document.querySelector('.breed-select');
 const loader = document.querySelector('.loader');
 const errorText = document.querySelector('.error');
 const catContainer = document.querySelector('.cat-info');
+
+const slimSelect = new SlimSelect(select);
+
 select.addEventListener('change', onChange);
 
 const BASE_URL = 'https://api.thecatapi.com/v1/';
 const ENDPOINT = 'breeds';
 const ENDPOINT2 = 'images/search';
 
-export function fetchBreeds() {
+function fetchBreeds() {
   const option = {
     method: 'GET',
     headers: {
@@ -46,7 +51,7 @@ fetchBreeds()
     console.log(error);
   });
 
-export function onChange() {
+function onChange() {
   breedId = select.value;
   loader.hidden = false;
   errorText.hidden = true;
@@ -67,7 +72,7 @@ export function onChange() {
       console.log(error);
     });
 }
-export function fetchCatByBreed(breedId) {
+function fetchCatByBreed(breedId) {
   const option = {
     method: 'GET',
     headers: {
@@ -88,7 +93,7 @@ export function fetchCatByBreed(breedId) {
   });
 }
 
-export function createMarkup(arr, description, name, temperament) {
+function createMarkup(arr, description, name, temperament) {
   return arr
     .map(({ url }) => {
       return `<img src="${url}" alt="${name}" width="550" />

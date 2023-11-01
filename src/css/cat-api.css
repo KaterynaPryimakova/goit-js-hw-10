@@ -8,3 +8,18 @@
 .descript {
   width: 450px;
 }
+.breed-select {
+  width: 200px;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.breed-select:hover {
+  border-color: #3498db;
+}
+.breed-select option:checked {
+  background-color: #3498db;
+  color: #fff;
+  border-color: #3498db;
+}

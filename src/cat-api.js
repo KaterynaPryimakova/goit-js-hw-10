@@ -102,7 +102,8 @@ function fetchCatByBreed(breedId) {
     },
   };
   const params = new URLSearchParams({
-    breed_ids: breedId,
+    // breed_ids: breedId,
+    breed_ids: select.value,
   });
 
   return fetch(`${BASE_URL}${ENDPOINT2}?${params}`, option).then(resp => {

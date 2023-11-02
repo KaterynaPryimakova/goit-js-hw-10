@@ -69,13 +69,11 @@ fetchBreeds()
 
 function onChange() {
   const breedId = select.value;
-  console.log(breedId);
   loader.style.display = 'inline-block';
   catContainer.innerHTML = '';
 
   fetchCatByBreed(breedId)
     .then(resp => {
-      console.log(breedId);
       const { description, name, temperament } = resp[0].breeds[0];
       catContainer.insertAdjacentHTML(
         'beforeend',
@@ -103,7 +101,6 @@ function fetchCatByBreed(breedId) {
     },
   };
   const params = new URLSearchParams({
-    // breed_ids: breedId,
     breed_ids: breedId,
   });
 

@@ -8,18 +8,34 @@
 .descript {
   width: 450px;
 }
-/* .breed-select {
-  width: 200px;
-  padding: 5px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+
+.loader {
+  width: 100%;
+  height: 4.8px;
+  display: inline-block;
+  position: relative;
+  background: rgba(228, 227, 214, 0.61);
+  overflow: hidden;
 }
-.breed-select:hover {
-  border-color: #3498db;
+.loader::after {
+  content: '';
+  width: 192px;
+  height: 4.8px;
+  background: #3191e0af;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  animation: animloader 2s linear infinite;
 }
-.breed-select option:checked {
-  background-color: #3498db;
-  color: #fff;
-  border-color: #3498db;
-} */
+
+@keyframes animloader {
+  0% {
+    left: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    left: 100%;
+    transform: translateX(0%);
+  }
+}

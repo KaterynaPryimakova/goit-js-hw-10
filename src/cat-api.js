@@ -45,18 +45,18 @@ fetchBreeds()
     });
 
     slimSelect = new SlimSelect({ select: '#single' });
-
-    loader.hidden = true;
+    loader.style.display = 'none';
   })
   .catch(error => {
-    loader.hidden = true;
+    loader.style.display = 'none';
     errorText.hidden = false;
     console.log(error);
   });
 
 function onChange() {
   breedId = select.value;
-  loader.hidden = false;
+  loader.style.display = 'inline-block';
+
   errorText.hidden = true;
   catContainer.innerHTML = '';
   fetchCatByBreed(breedId)
@@ -67,10 +67,10 @@ function onChange() {
         createMarkup(resp, description, name, temperament)
       );
 
-      loader.hidden = true;
+      loader.style.display = 'none';
     })
     .catch(error => {
-      loader.hidden = true;
+      loader.style.display = 'none';
       errorText.hidden = false;
       console.log(error);
     });

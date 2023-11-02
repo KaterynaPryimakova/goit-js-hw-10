@@ -1,9 +1,11 @@
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
 
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import 'notiflix/dist/notiflix-3.2.6.min.css';
+
 const select = document.querySelector('.breed-select');
 const loader = document.querySelector('.loader');
-const errorText = document.querySelector('.error');
 const catContainer = document.querySelector('.cat-info');
 
 let slimSelect;
@@ -49,16 +51,19 @@ fetchBreeds()
   })
   .catch(error => {
     loader.style.display = 'none';
-    errorText.hidden = false;
+    Notify.failure('Oops! Something went wrong! Try reloading the page!', {
+      position: 'center-top',
+      width: '100%',
+      useIcon: false,
+    });
     console.log(error);
   });
 
 function onChange() {
   breedId = select.value;
   loader.style.display = 'inline-block';
-
-  errorText.hidden = true;
   catContainer.innerHTML = '';
+
   fetchCatByBreed(breedId)
     .then(resp => {
       const { description, name, temperament } = resp[0].breeds[0];
@@ -71,7 +76,11 @@ function onChange() {
     })
     .catch(error => {
       loader.style.display = 'none';
-      errorText.hidden = false;
+      Notify.failure('Oops! Something went wrong! Try reloading the page!', {
+        position: 'center-top',
+        width: '100%',
+        useIcon: false,
+      });
       console.log(error);
     });
 }

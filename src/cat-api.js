@@ -68,7 +68,7 @@ fetchBreeds()
   });
 
 function onChange() {
-  breedId = select.value;
+  const breedId = select.value;
   console.log(breedId);
   loader.style.display = 'inline-block';
   catContainer.innerHTML = '';
@@ -103,7 +103,7 @@ function fetchCatByBreed(breedId) {
   };
   const params = new URLSearchParams({
     // breed_ids: breedId,
-    breed_ids: select.value,
+    breed_ids: breedId,
   });
 
   return fetch(`${BASE_URL}${ENDPOINT2}?${params}`, option).then(resp => {

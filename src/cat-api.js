@@ -75,6 +75,7 @@ function onChange() {
 
   fetchCatByBreed(breedId)
     .then(resp => {
+      console.log(breedId);
       const { description, name, temperament } = resp[0].breeds[0];
       catContainer.insertAdjacentHTML(
         'beforeend',

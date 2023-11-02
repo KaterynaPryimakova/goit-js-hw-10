@@ -1,11 +1,12 @@
 import SlimSelect from 'slim-select';
+import 'slim-select/dist/slimselect.css';
 
 const select = document.querySelector('.breed-select');
 const loader = document.querySelector('.loader');
 const errorText = document.querySelector('.error');
 const catContainer = document.querySelector('.cat-info');
 
-const slimSelect = new SlimSelect(select);
+let slimSelect;
 
 select.addEventListener('change', onChange);
 
@@ -42,6 +43,8 @@ fetchBreeds()
       selectOption.textContent = breed.name;
       select.appendChild(selectOption);
     });
+
+    slimSelect = new SlimSelect({ select: '#single' });
 
     loader.hidden = true;
   })

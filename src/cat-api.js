@@ -69,6 +69,7 @@ fetchBreeds()
 
 function onChange() {
   breedId = select.value;
+  console.log(breedId);
   loader.style.display = 'inline-block';
   catContainer.innerHTML = '';
 

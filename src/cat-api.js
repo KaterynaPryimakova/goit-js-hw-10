@@ -46,7 +46,15 @@ fetchBreeds()
       select.appendChild(selectOption);
     });
 
-    slimSelect = new SlimSelect({ select: '#single' });
+    slimSelect = new SlimSelect({
+      select: '#single',
+      settings: {
+        showSearch: true,
+        searchText: 'Sorry nothing to see here',
+        searchPlaceholder: 'Search for the cat breed!',
+        searchHighlight: true,
+      },
+    });
     loader.style.display = 'none';
   })
   .catch(error => {
